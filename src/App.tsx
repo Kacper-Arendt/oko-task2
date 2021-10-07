@@ -1,6 +1,7 @@
 import React from 'react';
 import {createGlobalStyle} from 'styled-components';
 import {SearchBar} from './components/SearchBar';
+import {Repositories} from "./components/Repositories";
 
 const GlobalStyles = createGlobalStyle`
   *,
@@ -24,12 +25,13 @@ const GlobalStyles = createGlobalStyle`
 
 
 function App() {
-  return (
-      <>
-        <GlobalStyles />
-        <SearchBar/>
-      </>
-  );
+    return (
+        <>
+            <GlobalStyles/>
+            <SearchBar/>
+            <Repositories/>
+        </>
+    );
 }
 
 export default App;
