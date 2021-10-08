@@ -42,6 +42,7 @@ interface IProps {
 }
 
 export const SearchBar = (props: IProps) => {
+
     function handleTextChange(value: string) {
         if (value.length >= 3) props.callback(value);
     }

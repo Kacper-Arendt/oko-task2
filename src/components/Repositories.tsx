@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useQuery} from "@apollo/react-hooks";
 import {ISearchReposResponse, SEARCH_FOR_REPOS} from "../Queries";
 import {Repository} from "./Repository";
+import {useEffect, useState} from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,8 +17,15 @@ interface IProps {
 }
 
 export const Repositories = (props: IProps) => {
+    const [searchRepo, setSearchRepo] = useState('');
     const {data, loading, error} = useQuery<ISearchReposResponse>(SEARCH_FOR_REPOS,
-        {variables: {searchTerm: props.searchTerm}});
+        {variables: {searchTerm: searchRepo}});
+
+    useEffect(() => {
+        setTimeout(function () {
+            setSearchRepo(props.searchTerm)
+        }, 1000);
+    }, [props.searchTerm])
 
     if (loading) return <Wrapper>Loading...</Wrapper>
 

@@ -9,7 +9,8 @@ export interface IRepo {
     watchers: { totalCount: number }
     owner: {
         login: string,
-        avatarUrl: string
+        avatarUrl: string,
+        url: string,
     },
     stargazers: { totalCount: number },
 }
@@ -38,7 +39,8 @@ export const SEARCH_FOR_REPOS = gql`
                         },
                         owner {
                             login,
-                            avatarUrl
+                            avatarUrl,
+                            url,
                         },
                         stargazers {
                             totalCount

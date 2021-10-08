@@ -5,21 +5,31 @@ import {GoStar, GoRepoForked, GoEye} from "react-icons/go";
 const StyledRepository = styled.div`
   width: 35rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr) .5rem 1fr;
   grid-template-rows: repeat(3, min-content);
   grid-template-areas: 
-    "name name  name user"
-    "description description description user"
-    "stars watchers forks .";
+    "name name  name line user"
+    "description description description line user"
+    "stars watchers forks line .";
   padding: .5rem;
   gap: 1rem;
   place-items: center;
   border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
   background-color: #BFBDBA;
+  transition: scale .3s;
 
   p {
     text-align: center;
+  }
+
+
+  a:hover {
+      transform: scale(1.02);
+  }
+
+  :active {
+      transform: scale(.95);
   }
 `
 
@@ -34,11 +44,12 @@ const Name = styled.a`
   cursor: pointer;
   white-space: nowrap;
   transition: scale .3s;
-  
-  :hover{
+
+  :hover {
     transform: scale(1.02);
   }
-  :active{
+
+  :active {
     transform: scale(.95);
   }
 `
@@ -86,9 +97,20 @@ const User = styled.div`
     margin-bottom: 1rem;
   }
 
-  p {
+  a {
+    text-decoration: none;
     font-weight: bold;
+    color: black;
+    cursor: pointer;
+    white-space: nowrap;
   }
+`
+
+const Line = styled.div`
+  grid-area: line;
+  width: 100%;
+  height: 110%;
+  border-left: 2px solid #595959;
 `
 
 interface IProps {
@@ -100,15 +122,16 @@ export const Repository = (props: IProps) => {
 
     return (
         <StyledRepository key={id}>
-            <Name href={url} target='_blank'>{name}</Name>
+            <Name href={url} target='_blank' rel="noreferrer">{name}</Name>
             <Description>{description}</Description>
             <User>
                 <img src={avatarUrl} alt="Repository owner avatar"/>
-                <p>{login}</p>
+                <a href={props.repo.owner.url} target='_blank' rel="noreferrer">{login}</a>
             </User>
             <Stars><GoStar/>{stargazers.totalCount}</Stars>
             <Watchers><GoEye/>{watchers.totalCount}</Watchers>
             <Forks><GoRepoForked/>{forkCount}</Forks>
+            <Line/>
         </StyledRepository>
     )
 }
