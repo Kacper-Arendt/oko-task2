@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+# OKO Press recruitment task-2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple Github repository searcher. This is the first application where I used GraphQL.
+</br>
+</br>
+Built with React, Typescript, Styled Components and Apollo GraphQL Platform.  
 
-## Available Scripts
+https://user-images.githubusercontent.com/71129131/136549883-18bf5c3b-d8aa-4937-a9a1-d0126bd36e31.mp4
 
-In the project directory, you can run:
 
-### `npm start`
+# Installation and Setup Instructions
+To get a local copy of the code, clone it using git:  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<code> git clone https://github.com/Kacper-Arendt/oko-task2 </code>  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To properly run this application you need to create a GitHub Api Token and paste it into the Apollo.ts file in the src folder
+</br>
+</br>
+![oko-task-2](https://user-images.githubusercontent.com/71129131/136550898-1f7c1767-0891-4e86-9fd2-a6c13ee79b74.png)
 
-### `npm test`
+Installation => <code>npm install</code>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To Run Test Suite => <code> npm test </code>
 
-### `npm run build`
+To Start Server => <code>  npm start </code>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+To Visit App => <code> localhost:3000 </code>
