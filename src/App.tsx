@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createGlobalStyle} from 'styled-components';
 import {SearchBar} from './components/SearchBar';
 import {Repositories} from "./components/Repositories";
@@ -25,11 +25,17 @@ const GlobalStyles = createGlobalStyle`
 
 
 function App() {
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
+    function callbackFunction(searchTerm: string): void {
+        setSearchTerm(searchTerm);
+    }
+
     return (
         <>
             <GlobalStyles/>
-            <SearchBar/>
-            <Repositories/>
+            <SearchBar callback={callbackFunction}/>
+            <Repositories searchTerm={searchTerm}/>
         </>
     );
 }

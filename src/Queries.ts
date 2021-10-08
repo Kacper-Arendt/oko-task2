@@ -1,21 +1,48 @@
 import gql from 'graphql-tag';
 
+export interface IRepo {
+    id: string,
+    name: string,
+    url: string,
+    forkCount: number,
+    description: string
+    watchers: { totalCount: number }
+    owner: {
+        login: string,
+        avatarUrl: string
+    },
+    stargazers: { totalCount: number },
+}
+
+export interface ISearchReposResponse {
+    search: {
+        repositoryCount: number,
+        edges: [IRepo],
+    },
+}
+
 export const SEARCH_FOR_REPOS = gql`
-    query($search_term: String!) {
-        search(query: $search_term, type: REPOSITORY, first: 20) {
+    query($searchTerm: String!) {
+        search(query: $searchTerm, type: REPOSITORY, first: 10) {
             repositoryCount,
             edges {
                 node {
                     ... on Repository {
+                        id,
                         name,
+                        url,
+                        description,
+                        forkCount,
+                        watchers{
+                            totalCount
+                        },
                         owner {
-                            login
+                            login,
+                            avatarUrl
                         },
                         stargazers {
                             totalCount
-                        },
-                        descriptionHTML,
-                    }
+                        }}
                 }
             }
         }

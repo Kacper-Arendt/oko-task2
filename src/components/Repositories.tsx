@@ -1,27 +1,36 @@
 import styled from "styled-components";
 import {useQuery} from "@apollo/react-hooks";
-import {SEARCH_FOR_REPOS} from "../Queries";
-import {useState} from "react";
+import {ISearchReposResponse, SEARCH_FOR_REPOS} from "../Queries";
+import {Repository} from "./Repository";
 
 const Wrapper = styled.div`
-  margin: 4rem 0 0;
-  text-align: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 6rem 0 0;
 `
 
-export const Repositories = () => {
-    const [searchTerm, setSearchTerm] = useState<string>('');
-    const {data, loading, error} = useQuery(SEARCH_FOR_REPOS, {variables: {searchTerm}})
+interface IProps {
+    searchTerm: string
+}
 
-    if (loading) return <div>Loading...</div>
+export const Repositories = (props: IProps) => {
+    const {data, loading, error} = useQuery<ISearchReposResponse>(SEARCH_FOR_REPOS,
+        {variables: {searchTerm: props.searchTerm}});
 
-    if (error) return <div>{error}</div>
+    if (loading) return <Wrapper>Loading...</Wrapper>
 
-    if (!data.search.repositoryCount) return <div>There are no such repositories!</div>
+    if (error) return <Wrapper>{error}</Wrapper>
+
+    if (!data!.search.repositoryCount) return <div>There are no such repositories!</div>
 
     return (
         <Wrapper>
-
+            {data!.search.repositoryCount && <p>Total: {data!.search.repositoryCount}</p>}
+            {data!.search.edges.map((repo: any) => {
+                return <Repository key={repo.node.id} repo={repo.node}/>
+            })}
         </Wrapper>
     )
 }

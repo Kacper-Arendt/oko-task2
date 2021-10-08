@@ -1,12 +1,12 @@
-import {FaSearch} from "react-icons/fa";
-import React, { useState } from "react";
+import {FaRegTrashAlt} from "react-icons/fa";
+import React from "react";
 import styled from "styled-components";
 
 const Header = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
-  height: 3rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,8 +14,8 @@ const Header = styled.header`
 `
 
 const Form = styled.form`
-  width: 15rem;
-  height: 70%;
+  width: 20rem;
+  height: 60%;
   display: flex;
   flex-direction: row;
 `
@@ -35,31 +35,26 @@ const Button = styled.button`
   outline: none;
   margin-left: -2rem;
   cursor: pointer;
-`
+`;
 
-export const SearchBar = () => {
-    const [repoName, setRepoName] = useState<string>('');
+interface IProps {
+    callback: (value: string) => void;
+}
 
-    const searchRepos = (e: React.SyntheticEvent): void => {
-        e.preventDefault();
-        console.log(repoName)
-        setRepoName('');
-    };
+export const SearchBar = (props: IProps) => {
+    function handleTextChange(value: string) {
+        if (value.length >= 3) props.callback(value);
+    }
 
     return (
         <Header>
             <Form>
                 <Input
                     type="text"
-                    value={repoName}
-                    onChange={(e) => setRepoName(e.target.value)}
+                    onChange={(e) => handleTextChange(e.target.value)}
                 />
-                <Button
-                    type='submit'
-                    disabled={repoName!.length < 3}
-                    onClick={searchRepos}
-                >
-                    <FaSearch/>
+                <Button onClick={() => handleTextChange('')} type='reset'>
+                    <FaRegTrashAlt/>
                 </Button>
             </Form>
         </Header>
