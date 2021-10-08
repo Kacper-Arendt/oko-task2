@@ -29,7 +29,7 @@ export const Repositories = (props: IProps) => {
 
     if (loading) return <Wrapper>Loading...</Wrapper>
 
-    if (error) return <Wrapper>{error}</Wrapper>
+    if (error) return <Wrapper>{error.message}</Wrapper>
 
     if (!data!.search.repositoryCount) return <div>There are no such repositories!</div>
 
